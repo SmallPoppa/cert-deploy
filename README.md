@@ -42,7 +42,7 @@ sudo -u deploy ssh-keyscan -H IP  >> /home/deploy/.ssh/known_hosts
 sudo -u deploy ssh-keyscan -H IP2  >> /home/deploy/.ssh/known_hosts
 ```
 
-4 · Мастер: копируем и меняем скрипт
+4 · Мастер: копируем и меняем скрипт на мейн сервере
 
 ```
 nano /usr/local/bin/deploy-cert.sh
@@ -54,7 +54,7 @@ nano /usr/local/bin/deploy-cert.sh
 sudo chmod +x /usr/local/bin/deploy-cert.sh
 ```
 
-5 · Привязываем к продлению Certbot
+5 · Привязываем к продлению Certbot на мейн сервере
 
 ```
 sudo mkdir -p /etc/letsencrypt/renewal-hooks/deploy
