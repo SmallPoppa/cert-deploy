@@ -10,7 +10,7 @@ sudo adduser --disabled-password --gecos "" deploy
 sudo -u deploy ssh-keygen -t ed25519 -N '' -f /home/deploy/.ssh/cert-deploy
 ```
 
-2 · Фронты: создаём того же deploy и вставляем ключ
+2 · Фронты: создаём того же deploy и вставляем ключ из /home/deploy/.ssh/cert-deploy.pub
 
 ```
 sudo adduser --disabled-password --gecos "" deploy
