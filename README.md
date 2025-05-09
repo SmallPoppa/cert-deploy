@@ -49,21 +49,19 @@ sudo -u deploy ssh-keyscan -H IP2  >> /home/deploy/.ssh/known_hosts
 4 · Мастер: копируем и меняем скрипт на мейн сервере
 
 ```
-nano /usr/local/bin/deploy-cert.sh
+nano /opt/deploy-cert/deploy-cert.sh
 ```
 
 Вставляем содержимое скрипта, меняем DOMAIN и прописываем IP нод (через пробел)
 
 ```
-sudo chmod +x /usr/local/bin/deploy-cert.sh
+sudo chmod +x /opt/deploy-cert/deploy-cert.sh
 ```
 
-5 · Привязываем к продлению Certbot на мейн сервере
+5 ·Создаем crontab запись для выполнения скрипта раз в сутки в 4 утра (желательно создать запись для certbot на более раннее время, например, 3 часа)
 
 ```
-sudo mkdir -p /etc/letsencrypt/renewal-hooks/deploy
-sudo ln -sf /usr/local/bin/deploy-cert.sh \
-            /etc/letsencrypt/renewal-hooks/deploy/00-cert-to-node
+echo "0 4 * * * /opt/deploy-cert/deploy-cert.sh" | sudo -u deploy crontab -
 ```
 
 6 · Тестируем
